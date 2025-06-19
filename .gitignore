@@ -62,3 +62,4 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 Sources/.DS_Store
 .DS_Store
+.swiftpm
