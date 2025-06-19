@@ -4,7 +4,7 @@ public enum FontSize: String, CaseIterable {
   /// Large Title — 34 pt
   case largeTitle = "Large Title"
   /// Title1 — 28 pt
-  case title1 = "Title1"
+  case title = "Title"
   /// Title2 — 22 pt
   case title2 = "Title2"
   /// Title3 — 20 pt
@@ -20,14 +20,14 @@ public enum FontSize: String, CaseIterable {
   /// Footnote — 13 pt
   case footnote = "Footnote"
   /// Caption1 — 12 pt
-  case caption1 = "Caption1"
+  case caption = "Caption1"
   /// Caption2 — 11 pt
   case caption2 = "Caption2"
 
   public var textStyle: Font.TextStyle {
     switch self {
     case .largeTitle: return .largeTitle
-    case .title1: return .title
+    case .title: return .title
     case .title2: return .title2
     case .title3: return .title3
     case .headline: return .headline
@@ -35,7 +35,7 @@ public enum FontSize: String, CaseIterable {
     case .callout: return .callout
     case .subheadline: return .subheadline
     case .footnote: return .footnote
-    case .caption1: return .caption
+    case .caption: return .caption
     case .caption2: return .caption2
     }
   }
