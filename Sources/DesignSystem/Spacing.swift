@@ -18,13 +18,13 @@ public enum Spacing {
 
   public var value: CGFloat {
     switch self {
-      case .xxs: return 4
-      case .xs:  return 8
-      case .sm:  return 12
-      case .md:  return 16
-      case .lg:  return 24
-      case .xl:  return 32
-      case .xxl: return 48
+      case .xxs: 4
+      case .xs: 8
+      case .sm: 12
+      case .md: 16
+      case .lg: 24
+      case .xl: 32
+      case .xxl: 48
     }
   }
 }

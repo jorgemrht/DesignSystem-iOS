@@ -24,6 +24,8 @@ public enum FontSize: String, CaseIterable {
   /// Caption2 — 11 pt
   case caption2 = "Caption2"
 
+  public static var caption1: FontSize { .caption }
+
   public var textStyle: Font.TextStyle {
     switch self {
     case .largeTitle: return .largeTitle
