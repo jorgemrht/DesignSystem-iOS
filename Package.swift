@@ -16,7 +16,7 @@ let package = Package(
     .target(
       name: "DesignSystem",
       path: "Sources/DesignSystem",
-      resources: [.process("Resources")]
+      resources: [.process("Theme/Resources")]
     ),
     .testTarget(
       name: "DesignSystemTests",

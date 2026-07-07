@@ -82,7 +82,7 @@ func material3ColorAssetsExist() async throws {
     .deletingLastPathComponent()
     .deletingLastPathComponent()
   let assetCatalogURL = packageURL
-    .appendingPathComponent("Sources/DesignSystem/Resources/Colors.xcassets")
+    .appendingPathComponent("Sources/DesignSystem/Theme/Resources/Colors.xcassets")
 
   for name in expectedNames {
     let contentsURL = assetCatalogURL
@@ -112,4 +112,28 @@ func material3ColorAssetsExist() async throws {
     #expect(hasLightColor)
     #expect(hasDarkColor)
   }
+}
+
+@Test
+func defaultThemeExposesMaterial3CoreColorRoles() async throws {
+  let colors = DSTheme.default.colors
+
+  _ = colors.primary
+  _ = colors.onPrimary
+  _ = colors.primaryContainer
+  _ = colors.onPrimaryContainer
+  _ = colors.secondary
+  _ = colors.onSecondary
+  _ = colors.secondaryContainer
+  _ = colors.onSecondaryContainer
+  _ = colors.background
+  _ = colors.onBackground
+  _ = colors.surface
+  _ = colors.onSurface
+  _ = colors.surfaceVariant
+  _ = colors.onSurfaceVariant
+  _ = colors.outline
+  _ = colors.outlineVariant
+  _ = colors.error
+  _ = colors.onError
 }
