@@ -6,7 +6,10 @@ public struct JdsTertiaryButtonStyle: ButtonStyle {
   private let size: JdsButtonSize
   private let isFullWidth: Bool
 
-  public init(size: JdsButtonSize = .medium, isFullWidth: Bool = false) {
+  public init(
+    size: JdsButtonSize = .medium,
+    isFullWidth: Bool = false
+  ) {
     self.size = size
     self.isFullWidth = isFullWidth
   }

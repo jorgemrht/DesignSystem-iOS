@@ -9,14 +9,16 @@ public extension TextFieldStyle where Self == JdsTextFieldStyle {
     title: String? = nil,
     message: String? = nil,
     symbol: JdsSystemSymbol? = nil,
-    state: JdsTextFieldState = .normal
+    state: JdsTextFieldState = .normal,
+    cornerRadius: CGFloat = .cornerRadiusM
   ) -> Self {
     .init(
       title: title,
       message: message,
       symbol: symbol,
       presentation: .bordered,
-      state: state
+      state: state,
+      cornerRadius: cornerRadius
     )
   }
 }

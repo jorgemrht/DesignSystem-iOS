@@ -6,6 +6,7 @@ public struct JdsTextArea: View {
   private let message: String?
   private let state: JdsTextFieldState
   private let minHeight: CGFloat
+  private let cornerRadius: CGFloat
 
   @Binding private var text: String
   @Environment(\.isEnabled) private var isEnabled
@@ -18,7 +19,8 @@ public struct JdsTextArea: View {
     placeholder: String = "",
     message: String? = nil,
     state: JdsTextFieldState = .normal,
-    minHeight: CGFloat = 120
+    minHeight: CGFloat = 120,
+    cornerRadius: CGFloat = .cornerRadiusM
   ) {
     self.title = title
     self._text = text
@@ -26,6 +28,7 @@ public struct JdsTextArea: View {
     self.message = message
     self.state = state
     self.minHeight = minHeight
+    self.cornerRadius = cornerRadius
   }
 
   public var body: some View {
@@ -55,7 +58,7 @@ public struct JdsTextArea: View {
           .frame(minHeight: minHeight)
       }
       .background {
-        let shape = RoundedRectangle(cornerRadius: .spacingXS)
+        let shape = RoundedRectangle(cornerRadius: cornerRadius)
         let outline = appearance.outlineColor(state: state, isEnabled: isEnabled)
 
         shape
@@ -90,11 +93,19 @@ private struct JdsTextAreaPreview: View {
       JdsTextArea("Notes", text: $notes, placeholder: "Add a note")
 
       JdsTextArea(
+        "Square notes",
+        text: $notes,
+        placeholder: "Add a note",
+        cornerRadius: .cornerRadiusNone
+      )
+
+      JdsTextArea(
         "Feedback",
         text: $errorText,
         placeholder: "Tell us more",
         message: "Minimum 20 characters",
-        state: .error
+        state: .error,
+        cornerRadius: .cornerRadiusS
       )
     }
     .padding(.spacingM)

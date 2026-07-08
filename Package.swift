@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "DesignSystem",
+  name: "JDesignSystem",
   platforms: [
     .iOS(.v26),
     .macOS(.v26),

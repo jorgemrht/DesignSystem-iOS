@@ -3,10 +3,16 @@ import SwiftUI
 public struct JdsSecondaryButtonStyle: ButtonStyle {
   private let size: JdsButtonSize
   private let isFullWidth: Bool
+  private let cornerRadius: CGFloat
 
-  public init(size: JdsButtonSize = .medium, isFullWidth: Bool = false) {
+  public init(
+    size: JdsButtonSize = .medium,
+    isFullWidth: Bool = false,
+    cornerRadius: CGFloat = .cornerRadiusXXL
+  ) {
     self.size = size
     self.isFullWidth = isFullWidth
+    self.cornerRadius = cornerRadius
   }
 
   public func makeBody(configuration: Configuration) -> some View {
@@ -16,6 +22,7 @@ public struct JdsSecondaryButtonStyle: ButtonStyle {
           appearance: .standard,
           size: size,
           isFullWidth: isFullWidth,
+          cornerRadius: cornerRadius,
           isPressed: configuration.isPressed,
           pressedOverlayOpacity: 0.10
         )
@@ -32,6 +39,12 @@ public struct JdsSecondaryButtonStyle: ButtonStyle {
     Button("Full width secondary") {}
       .buttonStyle(.JdsSecondary(isFullWidth: true))
 
+    Button("Square secondary") {}
+      .buttonStyle(.JdsSecondary(cornerRadius: .cornerRadiusNone))
+
+    Button("Medium radius secondary") {}
+      .buttonStyle(.JdsSecondary(cornerRadius: .cornerRadiusM))
+
     Button("Disabled") {}
       .buttonStyle(.JdsSecondary)
       .disabled(true)
@@ -45,8 +58,9 @@ public extension ButtonStyle where Self == JdsSecondaryButtonStyle {
 
   static func JdsSecondary(
     size: JdsButtonSize = .medium,
-    isFullWidth: Bool = false
+    isFullWidth: Bool = false,
+    cornerRadius: CGFloat = .cornerRadiusXXL
   ) -> Self {
-    .init(size: size, isFullWidth: isFullWidth)
+    .init(size: size, isFullWidth: isFullWidth, cornerRadius: cornerRadius)
   }
 }

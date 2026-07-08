@@ -51,22 +51,23 @@ public struct JdsFABButtonStyle: ButtonStyle {
 
   private let variant: JdsFABButtonVariant
   private let size: JdsFABButtonSize
-  private let usesLiquidGlass: Bool
+  private let shadow: JdsButtonShadow?
 
   public init(
     variant: JdsFABButtonVariant = .surface,
     size: JdsFABButtonSize = .medium,
-    usesLiquidGlass: Bool = false
+    shadow: JdsButtonShadow? = .floating
   ) {
     self.variant = variant
     self.size = size
-    self.usesLiquidGlass = usesLiquidGlass
+    self.shadow = shadow
   }
 
   public func makeBody(configuration: Configuration) -> some View {
     let container = isEnabled ? variant.container : .dsOnSurface.opacity(0.12)
     let foreground = isEnabled ? variant.foreground : .dsOnSurface.opacity(0.38)
     let iconForeground = isEnabled && configuration.isPressed ? foreground.opacity(0.72) : foreground
+    let shadow = isEnabled ? shadow : nil
 
     configuration.label
       .labelStyle(.iconOnly)
@@ -74,35 +75,16 @@ public struct JdsFABButtonStyle: ButtonStyle {
       .foregroundStyle(iconForeground)
       .frame(width: size.minSize, height: size.minSize)
       .background {
-        #if os(visionOS)
         Circle().fill(container)
-        #else
-        Circle().fill(usesLiquidGlass ? .clear : container)
-        #endif
       }
       .clipShape(Circle())
       .contentShape(Circle())
       .shadow(
-        color: isEnabled && !usesLiquidGlass ? ButtonShadow.floating.color : .clear,
-        radius: isEnabled && !usesLiquidGlass ? ButtonShadow.floating.radius : 0,
-        x: 0,
-        y: isEnabled && !usesLiquidGlass ? ButtonShadow.floating.y : 0
+        color: shadow?.color ?? .clear,
+        radius: shadow?.radius ?? 0,
+        x: shadow?.x ?? 0,
+        y: shadow?.y ?? 0
       )
-      .modifier(FABGlassModifier(isEnabled: isEnabled && usesLiquidGlass, tint: container))
-  }
-}
-
-private struct FABGlassModifier: ViewModifier {
-  let isEnabled: Bool
-  let tint: Color
-
-  @ViewBuilder
-  func body(content: Content) -> some View {
-    if isEnabled {
-      content.buttonGlassEffect(tint: tint, isInteractive: false, in: Circle())
-    } else {
-      content
-    }
   }
 }
 
@@ -112,9 +94,9 @@ public extension ButtonStyle where Self == JdsFABButtonStyle {
   static func JdsFAB(
     variant: JdsFABButtonVariant = .surface,
     size: JdsFABButtonSize = .medium,
-    usesLiquidGlass: Bool = false
+    shadow: JdsButtonShadow? = .floating
   ) -> Self {
-    .init(variant: variant, size: size, usesLiquidGlass: usesLiquidGlass)
+    .init(variant: variant, size: size, shadow: shadow)
   }
 }
 
@@ -130,7 +112,7 @@ public extension ButtonStyle where Self == JdsFABButtonStyle {
       .buttonStyle(.JdsFAB)
 
     Button("Create", systemImage: "plus") {}
-      .buttonStyle(.JdsFAB(variant: .primary))
+      .buttonStyle(.JdsFAB(variant: .primary, shadow: nil))
 
     Button("Large", systemImage: "sparkles") {}
       .labelStyle(.iconOnly)

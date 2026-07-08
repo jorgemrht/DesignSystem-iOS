@@ -13,6 +13,7 @@ public struct JdsTextFieldStyle: @preconcurrency TextFieldStyle {
   private let symbol: JdsSystemSymbol?
   private let presentation: JdsTextFieldPresentation
   private let state: JdsTextFieldState
+  private let cornerRadius: CGFloat
   private let appearance = TextFieldAppearance.standard
 
   public init(
@@ -20,13 +21,15 @@ public struct JdsTextFieldStyle: @preconcurrency TextFieldStyle {
     message: String? = nil,
     symbol: JdsSystemSymbol? = nil,
     presentation: JdsTextFieldPresentation = .plain,
-    state: JdsTextFieldState = .normal
+    state: JdsTextFieldState = .normal,
+    cornerRadius: CGFloat = .cornerRadiusM
   ) {
     self.title = title
     self.message = message
     self.symbol = symbol
     self.presentation = presentation
     self.state = state
+    self.cornerRadius = cornerRadius
   }
 
   @MainActor public func _body(configuration: TextField<Self._Label>) -> some View {
@@ -54,7 +57,8 @@ public struct JdsTextFieldStyle: @preconcurrency TextFieldStyle {
         TextFieldBackground(
           presentation: presentation,
           state: state,
-          appearance: appearance
+          appearance: appearance,
+          cornerRadius: cornerRadius
         )
       }
 
@@ -98,6 +102,7 @@ private struct TextFieldBackground: View {
   let presentation: JdsTextFieldPresentation
   let state: JdsTextFieldState
   let appearance: TextFieldAppearance
+  let cornerRadius: CGFloat
 
   var body: some View {
     let outline = appearance.outlineColor(state: state, isEnabled: isEnabled)
@@ -107,7 +112,7 @@ private struct TextFieldBackground: View {
       Color.clear
 
     case .tinted:
-      let shape = RoundedRectangle(cornerRadius: .spacingXS)
+      let shape = RoundedRectangle(cornerRadius: cornerRadius)
 
       shape
         .fill(appearance.containerColor(isEnabled: isEnabled))
@@ -118,7 +123,7 @@ private struct TextFieldBackground: View {
         }
 
     case .bordered:
-      let shape = RoundedRectangle(cornerRadius: .spacingXS)
+      let shape = RoundedRectangle(cornerRadius: cornerRadius)
 
       shape
         .fill(.dsSurface)
@@ -149,8 +154,14 @@ private struct JdsTextFieldStylePreview: View {
       TextField("Email", text: $email)
         .textFieldStyle(.JdsTintedTextField(title: "Tinted", state: .focused))
 
+      TextField("Company", text: $plain)
+        .textFieldStyle(.JdsTintedTextField(title: "Tinted square", cornerRadius: .cornerRadiusNone))
+
       TextField("Username", text: $plain)
         .textFieldStyle(.JdsBorderedTextField(title: "Bordered"))
+
+      TextField("Handle", text: $plain)
+        .textFieldStyle(.JdsBorderedTextField(title: "Bordered small radius", cornerRadius: .cornerRadiusS))
 
       TextField("Invite code", text: $plain)
         .textFieldStyle(.JdsUnderlinedTextField(title: "Underlined", message: "Invalid code", state: .error))

@@ -30,12 +30,25 @@ public enum JdsButtonSize: Sendable {
   }
 }
 
-struct ButtonShadow: Sendable {
-  let color: Color
-  let radius: CGFloat
-  let y: CGFloat
+public struct JdsButtonShadow: Sendable {
+  public let color: Color
+  public let radius: CGFloat
+  public let x: CGFloat
+  public let y: CGFloat
 
-  static let floating = ButtonShadow(
+  public init(
+    color: Color,
+    radius: CGFloat,
+    x: CGFloat = 0,
+    y: CGFloat
+  ) {
+    self.color = color
+    self.radius = radius
+    self.x = x
+    self.y = y
+  }
+
+  public static let floating = JdsButtonShadow(
     color: .dsScrim.opacity(0.22),
     radius: 10,
     y: 4
@@ -50,7 +63,7 @@ struct ButtonAppearance: Sendable {
   let disabledForeground: Color
   let disabledContainer: Color?
   let disabledBorder: Color?
-  let shadow: ButtonShadow?
+  let shadow: JdsButtonShadow?
 
   init(
     foreground: Color,
@@ -60,7 +73,7 @@ struct ButtonAppearance: Sendable {
     disabledForeground: Color = .dsOnSurface.opacity(0.38),
     disabledContainer: Color? = .dsOnSurface.opacity(0.12),
     disabledBorder: Color? = nil,
-    shadow: ButtonShadow? = nil
+    shadow: JdsButtonShadow? = nil
   ) {
     self.foreground = foreground
     self.container = container
@@ -107,6 +120,7 @@ struct ButtonAppearanceModifier: ViewModifier {
   let appearance: ButtonAppearance
   let size: JdsButtonSize
   let isFullWidth: Bool
+  let cornerRadius: CGFloat
   let isPressed: Bool
   let pressedOverlayOpacity: Double
 
@@ -115,6 +129,7 @@ struct ButtonAppearanceModifier: ViewModifier {
     let container = isEnabled ? appearance.container : appearance.disabledContainer
     let border = isEnabled ? appearance.border : appearance.disabledBorder
     let shadow = isEnabled ? appearance.shadow : nil
+    let shape = RoundedRectangle(cornerRadius: cornerRadius)
 
     content
       .font(size.labelFont)
@@ -125,40 +140,25 @@ struct ButtonAppearanceModifier: ViewModifier {
       .frame(minHeight: size.minHeight)
       .background {
         if let container {
-          Capsule().fill(container)
+          shape.fill(container)
         }
       }
       .overlay {
-        Capsule()
+        shape
           .fill(appearance.pressedOverlay.opacity(isEnabled && isPressed ? pressedOverlayOpacity : 0))
       }
       .overlay {
         if let border {
-          Capsule().stroke(border, lineWidth: 1)
+          shape.stroke(border, lineWidth: 1)
         }
       }
-      .clipShape(Capsule())
-      .contentShape(Capsule())
+      .clipShape(shape)
+      .contentShape(shape)
       .shadow(
         color: shadow?.color ?? .clear,
         radius: shadow?.radius ?? 0,
-        x: 0,
+        x: shadow?.x ?? 0,
         y: shadow?.y ?? 0
       )
-  }
-}
-
-extension View {
-  @ViewBuilder
-  func buttonGlassEffect(
-    tint: Color?,
-    isInteractive: Bool = true,
-    in shape: some Shape
-  ) -> some View {
-    #if os(visionOS)
-    self
-    #else
-    glassEffect(.regular.tint(tint).interactive(isInteractive), in: shape)
-    #endif
   }
 }
