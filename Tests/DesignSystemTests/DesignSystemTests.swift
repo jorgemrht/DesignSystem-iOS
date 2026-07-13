@@ -54,26 +54,7 @@ func material3ColorAssetsExist() async throws {
     "dsOnErrorContainer",
     "dsOutline",
     "dsOutlineVariant",
-    "dsScrim",
-    "dsSurfaceBright",
-    "dsSurfaceDim",
-    "dsSurfaceContainer",
-    "dsSurfaceContainerHigh",
-    "dsSurfaceContainerHighest",
-    "dsSurfaceContainerLow",
-    "dsSurfaceContainerLowest",
-    "dsPrimaryFixed",
-    "dsPrimaryFixedDim",
-    "dsOnPrimaryFixed",
-    "dsOnPrimaryFixedVariant",
-    "dsSecondaryFixed",
-    "dsSecondaryFixedDim",
-    "dsOnSecondaryFixed",
-    "dsOnSecondaryFixedVariant",
-    "dsTertiaryFixed",
-    "dsTertiaryFixedDim",
-    "dsOnTertiaryFixed",
-    "dsOnTertiaryFixedVariant"
+    "dsScrim"
   ]
 
   let testFileURL = URL(fileURLWithPath: #filePath)
@@ -122,18 +103,29 @@ func defaultThemeExposesMaterial3CoreColorRoles() async throws {
   _ = colors.onPrimary
   _ = colors.primaryContainer
   _ = colors.onPrimaryContainer
+  _ = colors.inversePrimary
   _ = colors.secondary
   _ = colors.onSecondary
   _ = colors.secondaryContainer
   _ = colors.onSecondaryContainer
+  _ = colors.tertiary
+  _ = colors.onTertiary
+  _ = colors.tertiaryContainer
+  _ = colors.onTertiaryContainer
   _ = colors.background
   _ = colors.onBackground
   _ = colors.surface
   _ = colors.onSurface
   _ = colors.surfaceVariant
   _ = colors.onSurfaceVariant
+  _ = colors.surfaceTint
+  _ = colors.inverseSurface
+  _ = colors.inverseOnSurface
   _ = colors.outline
   _ = colors.outlineVariant
   _ = colors.error
   _ = colors.onError
+  _ = colors.errorContainer
+  _ = colors.onErrorContainer
+  _ = colors.scrim
 }

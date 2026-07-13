@@ -47,7 +47,7 @@ public struct JdsTextFieldAppearance: Sendable {
     prompt: .dsOnSurfaceVariant,
     label: .dsOnSurfaceVariant,
     helper: .dsOnSurfaceVariant,
-    container: .dsSurfaceContainerHigh,
+    container: .dsSurfaceVariant,
     indicator: .dsOutline,
     focusedIndicator: .dsPrimary,
     error: .dsError

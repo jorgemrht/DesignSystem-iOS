@@ -1,117 +1,186 @@
 import SwiftUI
 
-public extension Color {
-  static let dsPrimary = Color("dsPrimary", bundle: .module)
-  static let dsOnPrimary = Color("dsOnPrimary", bundle: .module)
-  static let dsPrimaryContainer = Color("dsPrimaryContainer", bundle: .module)
-  static let dsOnPrimaryContainer = Color("dsOnPrimaryContainer", bundle: .module)
-  static let dsInversePrimary = Color("dsInversePrimary", bundle: .module)
-  static let dsSecondary = Color("dsSecondary", bundle: .module)
-  static let dsOnSecondary = Color("dsOnSecondary", bundle: .module)
-  static let dsSecondaryContainer = Color("dsSecondaryContainer", bundle: .module)
-  static let dsOnSecondaryContainer = Color("dsOnSecondaryContainer", bundle: .module)
-  static let dsTertiary = Color("dsTertiary", bundle: .module)
-  static let dsOnTertiary = Color("dsOnTertiary", bundle: .module)
-  static let dsTertiaryContainer = Color("dsTertiaryContainer", bundle: .module)
-  static let dsOnTertiaryContainer = Color("dsOnTertiaryContainer", bundle: .module)
-  static let dsBackground = Color("dsBackground", bundle: .module)
-  static let dsOnBackground = Color("dsOnBackground", bundle: .module)
-  static let dsSurface = Color("dsSurface", bundle: .module)
-  static let dsOnSurface = Color("dsOnSurface", bundle: .module)
-  static let dsSurfaceVariant = Color("dsSurfaceVariant", bundle: .module)
-  static let dsOnSurfaceVariant = Color("dsOnSurfaceVariant", bundle: .module)
-  static let dsSurfaceTint = Color("dsSurfaceTint", bundle: .module)
-  static let dsInverseSurface = Color("dsInverseSurface", bundle: .module)
-  static let dsInverseOnSurface = Color("dsInverseOnSurface", bundle: .module)
-  static let dsError = Color("dsError", bundle: .module)
-  static let dsOnError = Color("dsOnError", bundle: .module)
-  static let dsErrorContainer = Color("dsErrorContainer", bundle: .module)
-  static let dsOnErrorContainer = Color("dsOnErrorContainer", bundle: .module)
-  static let dsOutline = Color("dsOutline", bundle: .module)
-  static let dsOutlineVariant = Color("dsOutlineVariant", bundle: .module)
-  static let dsScrim = Color("dsScrim", bundle: .module)
-  static let dsSurfaceBright = Color("dsSurfaceBright", bundle: .module)
-  static let dsSurfaceDim = Color("dsSurfaceDim", bundle: .module)
-  static let dsSurfaceContainer = Color("dsSurfaceContainer", bundle: .module)
-  static let dsSurfaceContainerHigh = Color("dsSurfaceContainerHigh", bundle: .module)
-  static let dsSurfaceContainerHighest = Color("dsSurfaceContainerHighest", bundle: .module)
-  static let dsSurfaceContainerLow = Color("dsSurfaceContainerLow", bundle: .module)
-  static let dsSurfaceContainerLowest = Color("dsSurfaceContainerLowest", bundle: .module)
-  static let dsPrimaryFixed = Color("dsPrimaryFixed", bundle: .module)
-  static let dsPrimaryFixedDim = Color("dsPrimaryFixedDim", bundle: .module)
-  static let dsOnPrimaryFixed = Color("dsOnPrimaryFixed", bundle: .module)
-  static let dsOnPrimaryFixedVariant = Color("dsOnPrimaryFixedVariant", bundle: .module)
-  static let dsSecondaryFixed = Color("dsSecondaryFixed", bundle: .module)
-  static let dsSecondaryFixedDim = Color("dsSecondaryFixedDim", bundle: .module)
-  static let dsOnSecondaryFixed = Color("dsOnSecondaryFixed", bundle: .module)
-  static let dsOnSecondaryFixedVariant = Color("dsOnSecondaryFixedVariant", bundle: .module)
-  static let dsTertiaryFixed = Color("dsTertiaryFixed", bundle: .module)
-  static let dsTertiaryFixedDim = Color("dsTertiaryFixedDim", bundle: .module)
-  static let dsOnTertiaryFixed = Color("dsOnTertiaryFixed", bundle: .module)
-  static let dsOnTertiaryFixedVariant = Color("dsOnTertiaryFixedVariant", bundle: .module)
+enum DSDefaultColors {
+  static let primary = Color("dsPrimary", bundle: .module)
+  static let onPrimary = Color("dsOnPrimary", bundle: .module)
+  static let primaryContainer = Color("dsPrimaryContainer", bundle: .module)
+  static let onPrimaryContainer = Color("dsOnPrimaryContainer", bundle: .module)
+  static let inversePrimary = Color("dsInversePrimary", bundle: .module)
+  static let secondary = Color("dsSecondary", bundle: .module)
+  static let onSecondary = Color("dsOnSecondary", bundle: .module)
+  static let secondaryContainer = Color("dsSecondaryContainer", bundle: .module)
+  static let onSecondaryContainer = Color("dsOnSecondaryContainer", bundle: .module)
+  static let tertiary = Color("dsTertiary", bundle: .module)
+  static let onTertiary = Color("dsOnTertiary", bundle: .module)
+  static let tertiaryContainer = Color("dsTertiaryContainer", bundle: .module)
+  static let onTertiaryContainer = Color("dsOnTertiaryContainer", bundle: .module)
+  static let background = Color("dsBackground", bundle: .module)
+  static let onBackground = Color("dsOnBackground", bundle: .module)
+  static let surface = Color("dsSurface", bundle: .module)
+  static let onSurface = Color("dsOnSurface", bundle: .module)
+  static let surfaceVariant = Color("dsSurfaceVariant", bundle: .module)
+  static let onSurfaceVariant = Color("dsOnSurfaceVariant", bundle: .module)
+  static let surfaceTint = Color("dsSurfaceTint", bundle: .module)
+  static let inverseSurface = Color("dsInverseSurface", bundle: .module)
+  static let inverseOnSurface = Color("dsInverseOnSurface", bundle: .module)
+  static let error = Color("dsError", bundle: .module)
+  static let onError = Color("dsOnError", bundle: .module)
+  static let errorContainer = Color("dsErrorContainer", bundle: .module)
+  static let onErrorContainer = Color("dsOnErrorContainer", bundle: .module)
+  static let outline = Color("dsOutline", bundle: .module)
+  static let outlineVariant = Color("dsOutlineVariant", bundle: .module)
+  static let scrim = Color("dsScrim", bundle: .module)
+}
 
+private enum DSColorRole: Hashable, Sendable {
+  case primary
+  case onPrimary
+  case primaryContainer
+  case onPrimaryContainer
+  case inversePrimary
+  case secondary
+  case onSecondary
+  case secondaryContainer
+  case onSecondaryContainer
+  case tertiary
+  case onTertiary
+  case tertiaryContainer
+  case onTertiaryContainer
+  case background
+  case onBackground
+  case surface
+  case onSurface
+  case surfaceVariant
+  case onSurfaceVariant
+  case surfaceTint
+  case inverseSurface
+  case inverseOnSurface
+  case error
+  case onError
+  case errorContainer
+  case onErrorContainer
+  case outline
+  case outlineVariant
+  case scrim
+}
+
+private struct DSThemeColorStyle: ShapeStyle, Hashable, Sendable {
+  let role: DSColorRole
+
+  func resolve(in environment: EnvironmentValues) -> Color.Resolved {
+    let colors = environment.dsTheme.colors
+    let color = switch role {
+    case .primary: colors.primary
+    case .onPrimary: colors.onPrimary
+    case .primaryContainer: colors.primaryContainer
+    case .onPrimaryContainer: colors.onPrimaryContainer
+    case .inversePrimary: colors.inversePrimary
+    case .secondary: colors.secondary
+    case .onSecondary: colors.onSecondary
+    case .secondaryContainer: colors.secondaryContainer
+    case .onSecondaryContainer: colors.onSecondaryContainer
+    case .tertiary: colors.tertiary
+    case .onTertiary: colors.onTertiary
+    case .tertiaryContainer: colors.tertiaryContainer
+    case .onTertiaryContainer: colors.onTertiaryContainer
+    case .background: colors.background
+    case .onBackground: colors.onBackground
+    case .surface: colors.surface
+    case .onSurface: colors.onSurface
+    case .surfaceVariant: colors.surfaceVariant
+    case .onSurfaceVariant: colors.onSurfaceVariant
+    case .surfaceTint: colors.surfaceTint
+    case .inverseSurface: colors.inverseSurface
+    case .inverseOnSurface: colors.inverseOnSurface
+    case .error: colors.error
+    case .onError: colors.onError
+    case .errorContainer: colors.errorContainer
+    case .onErrorContainer: colors.onErrorContainer
+    case .outline: colors.outline
+    case .outlineVariant: colors.outlineVariant
+    case .scrim: colors.scrim
+    }
+
+    return color.resolve(in: environment)
+  }
+}
+
+public extension Color {
+  static let dsPrimary = Color(DSThemeColorStyle(role: .primary))
+  static let dsOnPrimary = Color(DSThemeColorStyle(role: .onPrimary))
+  static let dsPrimaryContainer = Color(DSThemeColorStyle(role: .primaryContainer))
+  static let dsOnPrimaryContainer = Color(DSThemeColorStyle(role: .onPrimaryContainer))
+  static let dsInversePrimary = Color(DSThemeColorStyle(role: .inversePrimary))
+  static let dsSecondary = Color(DSThemeColorStyle(role: .secondary))
+  static let dsOnSecondary = Color(DSThemeColorStyle(role: .onSecondary))
+  static let dsSecondaryContainer = Color(DSThemeColorStyle(role: .secondaryContainer))
+  static let dsOnSecondaryContainer = Color(DSThemeColorStyle(role: .onSecondaryContainer))
+  static let dsTertiary = Color(DSThemeColorStyle(role: .tertiary))
+  static let dsOnTertiary = Color(DSThemeColorStyle(role: .onTertiary))
+  static let dsTertiaryContainer = Color(DSThemeColorStyle(role: .tertiaryContainer))
+  static let dsOnTertiaryContainer = Color(DSThemeColorStyle(role: .onTertiaryContainer))
+  static let dsBackground = Color(DSThemeColorStyle(role: .background))
+  static let dsOnBackground = Color(DSThemeColorStyle(role: .onBackground))
+  static let dsSurface = Color(DSThemeColorStyle(role: .surface))
+  static let dsOnSurface = Color(DSThemeColorStyle(role: .onSurface))
+  static let dsSurfaceVariant = Color(DSThemeColorStyle(role: .surfaceVariant))
+  static let dsOnSurfaceVariant = Color(DSThemeColorStyle(role: .onSurfaceVariant))
+  static let dsSurfaceTint = Color(DSThemeColorStyle(role: .surfaceTint))
+  static let dsInverseSurface = Color(DSThemeColorStyle(role: .inverseSurface))
+  static let dsInverseOnSurface = Color(DSThemeColorStyle(role: .inverseOnSurface))
+  static let dsError = Color(DSThemeColorStyle(role: .error))
+  static let dsOnError = Color(DSThemeColorStyle(role: .onError))
+  static let dsErrorContainer = Color(DSThemeColorStyle(role: .errorContainer))
+  static let dsOnErrorContainer = Color(DSThemeColorStyle(role: .onErrorContainer))
+  static let dsOutline = Color(DSThemeColorStyle(role: .outline))
+  static let dsOutlineVariant = Color(DSThemeColorStyle(role: .outlineVariant))
+  static let dsScrim = Color(DSThemeColorStyle(role: .scrim))
+
+  static let dsTint = dsPrimary
   static let dsLabel = dsOnSurface
   static let dsSecondaryLabel = dsOnSurfaceVariant
   static let dsSystemBackground = dsBackground
-  static let dsGroupedBackground = dsSurfaceContainerLow
+  static let dsGroupedBackground = dsSurface
+  static let dsSystemFill = dsSurfaceVariant
   static let dsSeparator = dsOutlineVariant
-  static let dsTint = dsPrimary
 }
 
 public extension ShapeStyle where Self == Color {
-  static var dsPrimary: Self { Self("dsPrimary", bundle: .module) }
-  static var dsOnPrimary: Self { Self("dsOnPrimary", bundle: .module) }
-  static var dsPrimaryContainer: Self { Self("dsPrimaryContainer", bundle: .module) }
-  static var dsOnPrimaryContainer: Self { Self("dsOnPrimaryContainer", bundle: .module) }
-  static var dsInversePrimary: Self { Self("dsInversePrimary", bundle: .module) }
-  static var dsSecondary: Self { Self("dsSecondary", bundle: .module) }
-  static var dsOnSecondary: Self { Self("dsOnSecondary", bundle: .module) }
-  static var dsSecondaryContainer: Self { Self("dsSecondaryContainer", bundle: .module) }
-  static var dsOnSecondaryContainer: Self { Self("dsOnSecondaryContainer", bundle: .module) }
-  static var dsTertiary: Self { Self("dsTertiary", bundle: .module) }
-  static var dsOnTertiary: Self { Self("dsOnTertiary", bundle: .module) }
-  static var dsTertiaryContainer: Self { Self("dsTertiaryContainer", bundle: .module) }
-  static var dsOnTertiaryContainer: Self { Self("dsOnTertiaryContainer", bundle: .module) }
-  static var dsBackground: Self { Self("dsBackground", bundle: .module) }
-  static var dsOnBackground: Self { Self("dsOnBackground", bundle: .module) }
-  static var dsSurface: Self { Self("dsSurface", bundle: .module) }
-  static var dsOnSurface: Self { Self("dsOnSurface", bundle: .module) }
-  static var dsSurfaceVariant: Self { Self("dsSurfaceVariant", bundle: .module) }
-  static var dsOnSurfaceVariant: Self { Self("dsOnSurfaceVariant", bundle: .module) }
-  static var dsSurfaceTint: Self { Self("dsSurfaceTint", bundle: .module) }
-  static var dsInverseSurface: Self { Self("dsInverseSurface", bundle: .module) }
-  static var dsInverseOnSurface: Self { Self("dsInverseOnSurface", bundle: .module) }
-  static var dsError: Self { Self("dsError", bundle: .module) }
-  static var dsOnError: Self { Self("dsOnError", bundle: .module) }
-  static var dsErrorContainer: Self { Self("dsErrorContainer", bundle: .module) }
-  static var dsOnErrorContainer: Self { Self("dsOnErrorContainer", bundle: .module) }
-  static var dsOutline: Self { Self("dsOutline", bundle: .module) }
-  static var dsOutlineVariant: Self { Self("dsOutlineVariant", bundle: .module) }
-  static var dsScrim: Self { Self("dsScrim", bundle: .module) }
-  static var dsSurfaceBright: Self { Self("dsSurfaceBright", bundle: .module) }
-  static var dsSurfaceDim: Self { Self("dsSurfaceDim", bundle: .module) }
-  static var dsSurfaceContainer: Self { Self("dsSurfaceContainer", bundle: .module) }
-  static var dsSurfaceContainerHigh: Self { Self("dsSurfaceContainerHigh", bundle: .module) }
-  static var dsSurfaceContainerHighest: Self { Self("dsSurfaceContainerHighest", bundle: .module) }
-  static var dsSurfaceContainerLow: Self { Self("dsSurfaceContainerLow", bundle: .module) }
-  static var dsSurfaceContainerLowest: Self { Self("dsSurfaceContainerLowest", bundle: .module) }
-  static var dsPrimaryFixed: Self { Self("dsPrimaryFixed", bundle: .module) }
-  static var dsPrimaryFixedDim: Self { Self("dsPrimaryFixedDim", bundle: .module) }
-  static var dsOnPrimaryFixed: Self { Self("dsOnPrimaryFixed", bundle: .module) }
-  static var dsOnPrimaryFixedVariant: Self { Self("dsOnPrimaryFixedVariant", bundle: .module) }
-  static var dsSecondaryFixed: Self { Self("dsSecondaryFixed", bundle: .module) }
-  static var dsSecondaryFixedDim: Self { Self("dsSecondaryFixedDim", bundle: .module) }
-  static var dsOnSecondaryFixed: Self { Self("dsOnSecondaryFixed", bundle: .module) }
-  static var dsOnSecondaryFixedVariant: Self { Self("dsOnSecondaryFixedVariant", bundle: .module) }
-  static var dsTertiaryFixed: Self { Self("dsTertiaryFixed", bundle: .module) }
-  static var dsTertiaryFixedDim: Self { Self("dsTertiaryFixedDim", bundle: .module) }
-  static var dsOnTertiaryFixed: Self { Self("dsOnTertiaryFixed", bundle: .module) }
-  static var dsOnTertiaryFixedVariant: Self { Self("dsOnTertiaryFixedVariant", bundle: .module) }
+  static var dsPrimary: Self { Color.dsPrimary }
+  static var dsOnPrimary: Self { Color.dsOnPrimary }
+  static var dsPrimaryContainer: Self { Color.dsPrimaryContainer }
+  static var dsOnPrimaryContainer: Self { Color.dsOnPrimaryContainer }
+  static var dsInversePrimary: Self { Color.dsInversePrimary }
+  static var dsSecondary: Self { Color.dsSecondary }
+  static var dsOnSecondary: Self { Color.dsOnSecondary }
+  static var dsSecondaryContainer: Self { Color.dsSecondaryContainer }
+  static var dsOnSecondaryContainer: Self { Color.dsOnSecondaryContainer }
+  static var dsTertiary: Self { Color.dsTertiary }
+  static var dsOnTertiary: Self { Color.dsOnTertiary }
+  static var dsTertiaryContainer: Self { Color.dsTertiaryContainer }
+  static var dsOnTertiaryContainer: Self { Color.dsOnTertiaryContainer }
+  static var dsBackground: Self { Color.dsBackground }
+  static var dsOnBackground: Self { Color.dsOnBackground }
+  static var dsSurface: Self { Color.dsSurface }
+  static var dsOnSurface: Self { Color.dsOnSurface }
+  static var dsSurfaceVariant: Self { Color.dsSurfaceVariant }
+  static var dsOnSurfaceVariant: Self { Color.dsOnSurfaceVariant }
+  static var dsSurfaceTint: Self { Color.dsSurfaceTint }
+  static var dsInverseSurface: Self { Color.dsInverseSurface }
+  static var dsInverseOnSurface: Self { Color.dsInverseOnSurface }
+  static var dsError: Self { Color.dsError }
+  static var dsOnError: Self { Color.dsOnError }
+  static var dsErrorContainer: Self { Color.dsErrorContainer }
+  static var dsOnErrorContainer: Self { Color.dsOnErrorContainer }
+  static var dsOutline: Self { Color.dsOutline }
+  static var dsOutlineVariant: Self { Color.dsOutlineVariant }
+  static var dsScrim: Self { Color.dsScrim }
 
-  static var dsLabel: Self { .dsOnSurface }
-  static var dsSecondaryLabel: Self { .dsOnSurfaceVariant }
-  static var dsSystemBackground: Self { .dsBackground }
-  static var dsGroupedBackground: Self { .dsSurfaceContainerLow }
-  static var dsSeparator: Self { .dsOutlineVariant }
-  static var dsTint: Self { .dsPrimary }
+  static var dsTint: Self { Color.dsTint }
+  static var dsLabel: Self { Color.dsLabel }
+  static var dsSecondaryLabel: Self { Color.dsSecondaryLabel }
+  static var dsSystemBackground: Self { Color.dsSystemBackground }
+  static var dsGroupedBackground: Self { Color.dsGroupedBackground }
+  static var dsSystemFill: Self { Color.dsSystemFill }
+  static var dsSeparator: Self { Color.dsSeparator }
 }
