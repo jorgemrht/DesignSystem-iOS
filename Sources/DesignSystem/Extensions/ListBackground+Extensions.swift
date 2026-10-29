@@ -1,9 +1,13 @@
 import SwiftUI
 
 public extension View {
-  func JdsListBackgroundColor(_ color: Color) -> some View {
+  func dsListBackgroundColor(_ color: Color) -> some View {
+    #if os(tvOS)
+    background(color)
+    #else
     scrollContentBackground(.hidden)
       .background(color)
+    #endif
   }
 }
 
@@ -11,13 +15,13 @@ public extension View {
 #Preview {
   Form {
     Section {
-      Text("Primary surface")
+      Text(verbatim: "Primary surface")
         .foregroundStyle(.dsOnSurface)
 
-      Text("Secondary surface")
+      Text(verbatim: "Secondary surface")
         .foregroundStyle(.dsOnSurfaceVariant)
     }
   }
-  .JdsListBackgroundColor(.dsSurface)
+  .dsListBackgroundColor(.dsSurface)
 }
 #endif

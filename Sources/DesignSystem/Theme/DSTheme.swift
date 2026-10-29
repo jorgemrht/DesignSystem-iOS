@@ -7,5 +7,5 @@ public struct DSTheme: Sendable {
     self.colors = colors
   }
 
-  public static let `default` = DSTheme(colors: .default)
+  public static let `default` = Self(colors: .default)
 }

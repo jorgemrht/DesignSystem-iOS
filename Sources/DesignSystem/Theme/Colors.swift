@@ -146,41 +146,147 @@ public extension Color {
 }
 
 public extension ShapeStyle where Self == Color {
-  static var dsPrimary: Self { Color.dsPrimary }
-  static var dsOnPrimary: Self { Color.dsOnPrimary }
-  static var dsPrimaryContainer: Self { Color.dsPrimaryContainer }
-  static var dsOnPrimaryContainer: Self { Color.dsOnPrimaryContainer }
-  static var dsInversePrimary: Self { Color.dsInversePrimary }
-  static var dsSecondary: Self { Color.dsSecondary }
-  static var dsOnSecondary: Self { Color.dsOnSecondary }
-  static var dsSecondaryContainer: Self { Color.dsSecondaryContainer }
-  static var dsOnSecondaryContainer: Self { Color.dsOnSecondaryContainer }
-  static var dsTertiary: Self { Color.dsTertiary }
-  static var dsOnTertiary: Self { Color.dsOnTertiary }
-  static var dsTertiaryContainer: Self { Color.dsTertiaryContainer }
-  static var dsOnTertiaryContainer: Self { Color.dsOnTertiaryContainer }
-  static var dsBackground: Self { Color.dsBackground }
-  static var dsOnBackground: Self { Color.dsOnBackground }
-  static var dsSurface: Self { Color.dsSurface }
-  static var dsOnSurface: Self { Color.dsOnSurface }
-  static var dsSurfaceVariant: Self { Color.dsSurfaceVariant }
-  static var dsOnSurfaceVariant: Self { Color.dsOnSurfaceVariant }
-  static var dsSurfaceTint: Self { Color.dsSurfaceTint }
-  static var dsInverseSurface: Self { Color.dsInverseSurface }
-  static var dsInverseOnSurface: Self { Color.dsInverseOnSurface }
-  static var dsError: Self { Color.dsError }
-  static var dsOnError: Self { Color.dsOnError }
-  static var dsErrorContainer: Self { Color.dsErrorContainer }
-  static var dsOnErrorContainer: Self { Color.dsOnErrorContainer }
-  static var dsOutline: Self { Color.dsOutline }
-  static var dsOutlineVariant: Self { Color.dsOutlineVariant }
-  static var dsScrim: Self { Color.dsScrim }
+  static var dsPrimary: Self {
+    Color.dsPrimary
+  }
 
-  static var dsTint: Self { Color.dsTint }
-  static var dsLabel: Self { Color.dsLabel }
-  static var dsSecondaryLabel: Self { Color.dsSecondaryLabel }
-  static var dsSystemBackground: Self { Color.dsSystemBackground }
-  static var dsGroupedBackground: Self { Color.dsGroupedBackground }
-  static var dsSystemFill: Self { Color.dsSystemFill }
-  static var dsSeparator: Self { Color.dsSeparator }
+  static var dsOnPrimary: Self {
+    Color.dsOnPrimary
+  }
+
+  static var dsPrimaryContainer: Self {
+    Color.dsPrimaryContainer
+  }
+
+  static var dsOnPrimaryContainer: Self {
+    Color.dsOnPrimaryContainer
+  }
+
+  static var dsInversePrimary: Self {
+    Color.dsInversePrimary
+  }
+
+  static var dsSecondary: Self {
+    Color.dsSecondary
+  }
+
+  static var dsOnSecondary: Self {
+    Color.dsOnSecondary
+  }
+
+  static var dsSecondaryContainer: Self {
+    Color.dsSecondaryContainer
+  }
+
+  static var dsOnSecondaryContainer: Self {
+    Color.dsOnSecondaryContainer
+  }
+
+  static var dsTertiary: Self {
+    Color.dsTertiary
+  }
+
+  static var dsOnTertiary: Self {
+    Color.dsOnTertiary
+  }
+
+  static var dsTertiaryContainer: Self {
+    Color.dsTertiaryContainer
+  }
+
+  static var dsOnTertiaryContainer: Self {
+    Color.dsOnTertiaryContainer
+  }
+
+  static var dsBackground: Self {
+    Color.dsBackground
+  }
+
+  static var dsOnBackground: Self {
+    Color.dsOnBackground
+  }
+
+  static var dsSurface: Self {
+    Color.dsSurface
+  }
+
+  static var dsOnSurface: Self {
+    Color.dsOnSurface
+  }
+
+  static var dsSurfaceVariant: Self {
+    Color.dsSurfaceVariant
+  }
+
+  static var dsOnSurfaceVariant: Self {
+    Color.dsOnSurfaceVariant
+  }
+
+  static var dsSurfaceTint: Self {
+    Color.dsSurfaceTint
+  }
+
+  static var dsInverseSurface: Self {
+    Color.dsInverseSurface
+  }
+
+  static var dsInverseOnSurface: Self {
+    Color.dsInverseOnSurface
+  }
+
+  static var dsError: Self {
+    Color.dsError
+  }
+
+  static var dsOnError: Self {
+    Color.dsOnError
+  }
+
+  static var dsErrorContainer: Self {
+    Color.dsErrorContainer
+  }
+
+  static var dsOnErrorContainer: Self {
+    Color.dsOnErrorContainer
+  }
+
+  static var dsOutline: Self {
+    Color.dsOutline
+  }
+
+  static var dsOutlineVariant: Self {
+    Color.dsOutlineVariant
+  }
+
+  static var dsScrim: Self {
+    Color.dsScrim
+  }
+
+  static var dsTint: Self {
+    Color.dsTint
+  }
+
+  static var dsLabel: Self {
+    Color.dsLabel
+  }
+
+  static var dsSecondaryLabel: Self {
+    Color.dsSecondaryLabel
+  }
+
+  static var dsSystemBackground: Self {
+    Color.dsSystemBackground
+  }
+
+  static var dsGroupedBackground: Self {
+    Color.dsGroupedBackground
+  }
+
+  static var dsSystemFill: Self {
+    Color.dsSystemFill
+  }
+
+  static var dsSeparator: Self {
+    Color.dsSeparator
+  }
 }

@@ -1,0 +1,22 @@
+# Language
+--swiftversion 6.4
+
+# Layout (Swift.org and Apple's swift-format use 2 spaces)
+--indent 2
+--maxwidth 120
+--wraparguments before-first
+--wrapparameters before-first
+--wrapcollections before-first
+--closingparen balanced
+--trailing-commas never
+--stripunusedargs closure-only
+--header strip
+
+# Several files wrap their whole body in #if; indenting it would push everything one level.
+--ifdef no-indent
+
+# SwiftLint's modifier_order is the single source of truth for modifier order.
+# @ContentBuilder needs iOS 27 and the minimum here is 26.
+--disable modifierOrder, contentBuilder, wrapMultilineStatementBraces, extensionAttributes, repeatedGuard
+
+--exclude .build,.swiftpm,Showcase/DesignSystemShowcase.xcodeproj

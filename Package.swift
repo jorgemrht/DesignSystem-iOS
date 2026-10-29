@@ -1,4 +1,4 @@
-// swift-tools-version:6.3
+// swift-tools-version:6.4
 import PackageDescription
 
 let package = Package(
@@ -15,7 +15,7 @@ let package = Package(
     .library(
       name: "JDesignSystem",
       targets: ["JDesignSystem"]
-    ),
+    )
   ],
   targets: [
     .target(
@@ -25,7 +25,9 @@ let package = Package(
     ),
     .testTarget(
       name: "DesignSystemTests",
-      dependencies: ["JDesignSystem"]
-    ),
+      dependencies: ["JDesignSystem"],
+      exclude: ["References"],
+      swiftSettings: [.defaultIsolation(MainActor.self)]
+    )
   ]
 )
