@@ -59,6 +59,7 @@ public struct DSTextFieldStyle: @preconcurrency TextFieldStyle {
 private struct DSTextFieldStyleBody: View {
   @Environment(\.isEnabled) private var isEnabled
   @Environment(\.dsCornerStyle) private var inheritedCornerStyle
+  @Environment(\.dsFieldContext) private var fieldContext
   @FocusState private var isFocused: Bool
   @ScaledMetric(relativeTo: .body) private var compactHeight: CGFloat = 44
   @ScaledMetric(relativeTo: .body) private var regularHeight: CGFloat = 52
@@ -76,6 +77,7 @@ private struct DSTextFieldStyleBody: View {
 
   var body: some View {
     let resolvedState = resolvedState
+    let validationMessage = fieldContext.validationMessage
 
     VStack(alignment: .leading, spacing: .spacingXXXS) {
       if let title {
@@ -114,8 +116,8 @@ private struct DSTextFieldStyleBody: View {
       }
 
       TextFieldSupportText(
-        message: message,
-        errorAnnouncement: errorAnnouncement,
+        message: validationMessage ?? message,
+        errorAnnouncement: validationMessage ?? errorAnnouncement,
         state: resolvedState,
         appearance: appearance
       )
@@ -127,14 +129,17 @@ private struct DSTextFieldStyleBody: View {
     let field = configuration
       .font(.body)
       .foregroundStyle(appearance.contentColor(isEnabled: isEnabled))
-      .focused($isFocused)
 
-    return Group {
-      if let title {
-        field.accessibilityLabel(Text(title))
-      } else {
-        field
-      }
+    return labeled(field)
+      .modifier(DSLocalFocusModifier(context: fieldContext, binding: $isFocused))
+  }
+
+  @ViewBuilder
+  private func labeled(_ field: some View) -> some View {
+    if let title {
+      field.accessibilityLabel(Text(title))
+    } else {
+      field
     }
   }
 
@@ -157,7 +162,7 @@ private struct DSTextFieldStyleBody: View {
   }
 
   private var resolvedState: DSTextFieldState {
-    state.resolved(isFocused: isFocused)
+    state.resolved(isFocused: isFocused, in: fieldContext)
   }
 }
 

@@ -17,6 +17,7 @@ public struct DSTextArea: View {
   @Binding private var text: String
   @Environment(\.isEnabled) private var isEnabled
   @Environment(\.dsCornerStyle) private var inheritedCornerStyle
+  @Environment(\.dsFieldContext) private var fieldContext
   @FocusState private var isFocused: Bool
 
   public init(
@@ -47,6 +48,7 @@ public struct DSTextArea: View {
 
   public var body: some View {
     let resolvedState = resolvedState
+    let validationMessage = fieldContext.validationMessage
 
     VStack(alignment: .leading, spacing: .spacingXXXS) {
       if let title {
@@ -74,7 +76,7 @@ public struct DSTextArea: View {
           .padding(.horizontal, .spacingXXS)
           .padding(.vertical, .spacingXXXS)
           .frame(minHeight: minHeight)
-          .focused($isFocused)
+          .modifier(DSLocalFocusModifier(context: fieldContext, binding: $isFocused))
           .accessibilityLabel(Text(title ?? placeholder))
           .onChange(of: text) { _, newValue in
             let limited = Self.limited(newValue, to: maxLength)
@@ -98,8 +100,8 @@ public struct DSTextArea: View {
 
       HStack(alignment: .firstTextBaseline, spacing: .spacingXXS) {
         TextFieldSupportText(
-          message: message,
-          errorAnnouncement: errorAnnouncement,
+          message: validationMessage ?? message,
+          errorAnnouncement: validationMessage ?? errorAnnouncement,
           state: resolvedState,
           appearance: appearance
         )
@@ -121,7 +123,7 @@ public struct DSTextArea: View {
   }
 
   private var resolvedState: DSTextFieldState {
-    state.resolved(isFocused: isFocused)
+    state.resolved(isFocused: isFocused, in: fieldContext)
   }
 }
 

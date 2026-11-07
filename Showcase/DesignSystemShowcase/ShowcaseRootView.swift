@@ -41,6 +41,8 @@ enum ShowcaseSection: CaseIterable, Identifiable, Hashable {
   case glass
   case textFields
   case textArea
+  case forms
+  case formControls
   case toggles
   case cards
   case cornerStyle
@@ -67,6 +69,8 @@ enum ShowcaseSection: CaseIterable, Identifiable, Hashable {
     case .glass: "Glass"
     case .textFields: "Text fields"
     case .textArea: "Text area"
+    case .forms: "Forms"
+    case .formControls: "Form controls"
     case .toggles: "Toggles"
     case .cards: "Cards"
     case .cornerStyle: "Corner style"
@@ -92,6 +96,8 @@ enum ShowcaseSection: CaseIterable, Identifiable, Hashable {
     case .glass: GlassShowcase()
     case .textFields: TextFieldsShowcase()
     case .textArea: TextAreaShowcase()
+    case .forms: FormsShowcase()
+    case .formControls: FormControlsShowcase()
     case .toggles: TogglesShowcase()
     case .cards: CardsShowcase()
     case .cornerStyle: CornerStyleShowcase()

@@ -79,6 +79,25 @@ Text buttons follow `controlSize` and `buttonSizing`. Glass buttons are not avai
 
 Field state is `normal`, `focused` or `error`.
 
+### Forms
+
+| Component | What it is | Options |
+| --- | --- | --- |
+| `DSFormStyle` (`.ds`) | Form style that draws each section on a card | none |
+| `dsForm` | Gives the fields below it the validation and, when it receives a focus binding, the focus and an optional keyboard toolbar (iOS only) | validation, focus, focus order, keyboard toolbar texts |
+| `dsField` | Moves the focus to the next field on Return and validates when the field changes or loses focus; needs a `dsForm` with a focus binding | field, value, validator, submit action |
+| `dsValidated`, `dsFieldMessage` | Validation and message for controls without focus, such as a picker; a form made only of these uses `dsForm(validation:)` | field, value, validator, result |
+| `DSValidator`, `DSValidation`, `DSValidationResult` | The rule the app supplies and its result | message as a localized resource |
+| `DSFormValidation` | Results of every field, held by the app | first invalid field, has errors |
+| `DSLabeledContentStyle` (`.ds`) | Row with a label, a value and an optional disclosure symbol | disclosure symbol |
+| `DSDatePickerStyle` (`.ds`) | Compact date picker in the same row; not on tvOS or watchOS | none |
+
+`dsForm` follows the declaration order of the field enum for Return and for the keyboard toolbar. When the enum also has cases for controls that do not take focus, such as pickers, pass `order` with only the cases that do; otherwise Return on the last text field moves the focus to a control that has none. `DSFormValidation.firstInvalid` also follows declaration order, and `firstInvalid(in:)` takes the same `order`.
+
+Apply `dsField`, `dsValidated` and `dsFieldMessage` to the control itself, not to a container, because the field context is inherited by everything below the view that sets it. A field whose enum type differs from the one given to `dsForm` does nothing: it stops in debug builds and logs a fault in release builds.
+
+Validation rules come from the app. The library runs them and shows the result under the field. A `Picker` takes its message from `dsFieldMessage`, because SwiftUI does not allow a custom picker style.
+
 ### Feedback
 
 | Component | What it is | Options |

@@ -2,6 +2,13 @@
 import SwiftUI
 import Testing
 
+struct ContextCase: Sendable {
+  let state: DSTextFieldState
+  let isFocused: Bool
+  let context: DSFieldContext?
+  let expected: DSTextFieldState
+}
+
 struct TextFieldModelTests {
   private let standard = DSTextFieldAppearance.standard
 
@@ -110,4 +117,48 @@ struct TextFieldModelTests {
     #expect(DSTextArea.limited("👍🏽👍🏽👍🏽", to: 2) == "👍🏽👍🏽")
   }
   #endif
+
+  @Test(arguments: [
+    ContextCase(state: .normal, isFocused: false, context: nil, expected: .normal),
+    ContextCase(state: .normal, isFocused: true, context: nil, expected: .focused),
+    ContextCase(
+      state: .normal,
+      isFocused: false,
+      context: DSFieldContext(result: .invalid("Wrong"), focus: .external(isFocused: false)),
+      expected: .error
+    ),
+    ContextCase(
+      state: .normal,
+      isFocused: false,
+      context: DSFieldContext(result: .valid, focus: .external(isFocused: true)),
+      expected: .focused
+    ),
+    ContextCase(
+      state: .normal,
+      isFocused: true,
+      context: DSFieldContext(result: .valid, focus: .external(isFocused: false)),
+      expected: .normal
+    ),
+    ContextCase(
+      state: .error,
+      isFocused: false,
+      context: DSFieldContext(result: .valid, focus: .external(isFocused: false)),
+      expected: .error
+    ),
+    ContextCase(
+      state: .normal,
+      isFocused: true,
+      context: DSFieldContext(result: .invalid("Wrong"), focus: .local),
+      expected: .error
+    ),
+    ContextCase(
+      state: .normal,
+      isFocused: true,
+      context: DSFieldContext(result: .valid, focus: .local),
+      expected: .focused
+    )
+  ])
+  func `the field context decides the state of a text field`(scenario: ContextCase) {
+    #expect(scenario.state.resolved(isFocused: scenario.isFocused, in: scenario.context) == scenario.expected)
+  }
 }
